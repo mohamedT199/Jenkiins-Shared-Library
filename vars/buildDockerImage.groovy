@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
+import com.example.Docker
 def call(String CredentialsId){
-    //'Docker-Hub'
-
+    return new Docker(this).buildDockerImage(CredentialsId)
 }

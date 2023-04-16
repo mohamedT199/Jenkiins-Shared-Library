@@ -1,6 +1,5 @@
 #!/usr/bin/env groovy
-
+import com.example.Maven
 def call(){
-    echo "Building Artifact Start ...."
-    sh "mvn clean package"
+    return new Maven(this).buildArtifact()
 }
