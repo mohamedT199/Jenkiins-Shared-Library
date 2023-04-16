@@ -8,12 +8,12 @@ class Maven implements  Serializable{
     }
 
 
-    buildArtifact(){
+    def buildArtifact(){
         script.echo "Building Artifact Start ...."
         script.sh "mvn clean package"
     }
 
-    bumpVersion(){
+    def bumpVersion(){
         script.sh "mvn build-helper:parse-version versions:set \
         -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} \
         versions:commit"
