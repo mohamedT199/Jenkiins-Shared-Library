@@ -1,6 +1,5 @@
 #!/usr/bin/env groovy
 import com.example.Maven
 def call(){
-    //return new Maven(this).bumpVersion()
-    echo 'hello '
+    return new Maven(this).bumpVersion()
 }
