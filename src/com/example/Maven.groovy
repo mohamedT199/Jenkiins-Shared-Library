@@ -3,7 +3,7 @@ package com.example
 class Maven implements  Serializable{
 
     def script
-
+    def static Dversion ;
     Maven(script){
         this.script = script
     }
@@ -22,7 +22,9 @@ class Maven implements  Serializable{
         script.echo 'get version'
         script.version  = matcher[0][1]
         script.echo 'have version'
-        script.ImageName = "${script.version}-${script.BUILD_NUMBER}"
-        script.echo 'get image name'
+        script.env.ImageName = "${script.version}-${script.BUILD_NUMBER}"
+        script.echo "get image name ${script.env.ImageName}"
+        Dversion = script.env.ImageName
+        script.echo "get Dversion ${this.Dversion}"
     }
 }
