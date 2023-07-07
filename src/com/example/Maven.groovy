@@ -15,17 +15,18 @@ class Maven implements  Serializable{
     }
 
     def bumpVersion(pomDir){
+        def matcher
         if (pomDir != "" || pomDir != null ){
             script.sh "mvn build-helper:parse-version versions:set \
             -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} \
             versions:commit -f ${pomDir}/pom.xml"
-            def matcher = script.readFile("${pomDir}/pom.xml") =~ '<version>(.+)</version>'
+             matcher = script.readFile("${pomDir}/pom.xml") =~ '<version>(.+)</version>'
         }
         else {
         script.sh "mvn build-helper:parse-version versions:set \
         -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} \
         versions:commit"
-            def matcher = script.readFile('pom.xml') =~ '<version>(.+)</version>'
+             matcher = script.readFile('pom.xml') =~ '<version>(.+)</version>'
         }
 
         script.echo 'get version'
