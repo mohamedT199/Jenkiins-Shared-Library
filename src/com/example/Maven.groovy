@@ -9,9 +9,16 @@ class Maven implements  Serializable{
     }
 
 
-    def buildArtifact(){
+    def buildArtifact(Boolean test){
+
         script.echo "Building Artifact Start ...."
-        script.sh "mvn clean package"
+        if (test){
+            script.sh "mvn clean package"
+        }else{
+            script.sh "mvn clean package -DskipTests "
+        }
+
+
     }
 
     def bumpVersion(pomDir){
