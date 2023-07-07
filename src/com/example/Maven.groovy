@@ -14,8 +14,8 @@ class Maven implements  Serializable{
         script.sh "mvn clean package"
     }
 
-    def bumpVersion(String pomDir){
-        if (!script.pomDir.isEmpty()){
+    def bumpVersion(){
+        if (!script.pomDirectory.isEmpty()){
             script.sh "mvn build-helper:parse-version versions:set \
             -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} \
             versions:commit -f \\\${pomDir}/pom.xml"
