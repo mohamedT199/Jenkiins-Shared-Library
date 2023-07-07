@@ -1,6 +1,6 @@
 package com.example
 
-class Maven implements  Serializable{
+class Maven implements  Serializable , LanguageType {
 
     def script
     def static Dversion ;
@@ -9,6 +9,7 @@ class Maven implements  Serializable{
     }
 
 
+    @Override
     def buildArtifact(Boolean test){
 
         script.echo "Building Artifact Start ...."
@@ -21,6 +22,7 @@ class Maven implements  Serializable{
 
     }
 
+    @Override
     def bumpVersion(pomDir){
         def matcher
         if (pomDir != "" && pomDir != null ){
