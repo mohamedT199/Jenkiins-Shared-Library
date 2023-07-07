@@ -25,6 +25,7 @@ class NPM implements  Serializable , LanguageType {
         script.sh "node --version"
         script.sh "npm install "
         script.sh "npm run build"
-
+        script.sh "rm -rf hr.tar"
+        script.sh "tar cvf hr.tar dist"
     }
 }
