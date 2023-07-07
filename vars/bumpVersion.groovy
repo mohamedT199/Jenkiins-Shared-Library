@@ -5,6 +5,7 @@ def call(String pomDir){
         sh "echo $pomDir "
         sh "cd $pomDir"
     }
+    sh "pwd"
     sh "echo $pomDir "
     return new Maven(this).bumpVersion()
 }
