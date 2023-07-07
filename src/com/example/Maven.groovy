@@ -14,10 +14,16 @@ class Maven implements  Serializable{
         script.sh "mvn clean package"
     }
 
-    def bumpVersion(){
+    def bumpVersion(String pomDir){
+        if (!pomDir.isEmpty()){
+            script.sh "mvn build-helper:parse-version versions:set \
+            -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} \
+            versions:commit -f \\\${pomDir}/pom.xml"
+        }
+        else {
         script.sh "mvn build-helper:parse-version versions:set \
         -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} \
-        versions:commit"
+        versions:commit" }
         def matcher = script.readFile('pom.xml') =~ '<version>(.+)</version>'
         script.echo 'get version'
         script.version  = matcher[0][1]
