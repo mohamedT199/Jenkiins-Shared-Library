@@ -25,6 +25,6 @@ class NPM implements  Serializable , LanguageType {
         script.sh "node --version"
         script.sh "npm install "
         script.sh "npm run build"
-        script.sh "git push HEAD:main"
+
     }
 }
