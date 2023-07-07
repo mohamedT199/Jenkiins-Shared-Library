@@ -19,6 +19,8 @@ class NPM implements  Serializable , LanguageType {
 
     @Override
     def buildArtifact(Boolean test) {
+        script.sh "npm --version "
+        script.sh "node --version"
         script.sh "npm install "
         script.sh "npm run build"
     }
