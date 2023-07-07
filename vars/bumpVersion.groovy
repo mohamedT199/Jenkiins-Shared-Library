@@ -1,5 +1,8 @@
 #!/usr/bin/env groovy
 import com.example.Maven
-def call(){
+def call(String pomDir){
+    if (!pomDir.isNullOrEmpty()){
+        sh "cd "
+    }
     return new Maven(this).bumpVersion()
 }
