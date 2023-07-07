@@ -6,7 +6,7 @@ def call(String pomDir){
     def fileExtensions = ['java', 'python', 'ruby']
     def maven = "pom.xml"
     def npm = "package.json"
-    if (fileExists(java)) {
+    if (fileExists(maven)) {
         sh "echo 'its java '"
         return new Maven(this).bumpVersion(pomDir)
     }else if (fileExists(npm)){
