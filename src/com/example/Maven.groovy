@@ -18,7 +18,7 @@ class Maven implements  Serializable{
         if (pomDir != "" || pomDir != null ){
             script.sh "mvn build-helper:parse-version versions:set \
             -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} \
-            versions:commit -f \\\${pomDir}/pom.xml"
+            versions:commit -f ${pomDir}/pom.xml"
         }
         else {
         script.sh "mvn build-helper:parse-version versions:set \
