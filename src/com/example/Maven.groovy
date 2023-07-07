@@ -19,12 +19,15 @@ class Maven implements  Serializable{
             script.sh "mvn build-helper:parse-version versions:set \
             -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} \
             versions:commit -f ${pomDir}/pom.xml"
+            def matcher = script.readFile("${pomDir}/pom.xml") =~ '<version>(.+)</version>'
         }
         else {
         script.sh "mvn build-helper:parse-version versions:set \
         -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} \
-        versions:commit" }
-        def matcher = script.readFile('pom.xml') =~ '<version>(.+)</version>'
+        versions:commit"
+            def matcher = script.readFile('pom.xml') =~ '<version>(.+)</version>'
+        }
+
         script.echo 'get version'
         script.version  = matcher[0][1]
         script.echo 'have version'
