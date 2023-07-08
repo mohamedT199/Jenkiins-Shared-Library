@@ -18,6 +18,7 @@ class NPM implements  Serializable , LanguageType {
         NPMDversion = newVersion ;
         script.echo "neeeeewww Upgraded version from ${script.env.NPMImageVersion} to ${NPMDversion}"
         script.sh "cat package.json "
+        script.sh "git status "
         script.sh "git add package.json "
         script.sh 'git commit -m "version" '
         script.sh "git push origin HEAD:main"
