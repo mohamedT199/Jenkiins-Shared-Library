@@ -17,11 +17,12 @@ class NPM implements  Serializable , LanguageType {
         script.env.NPMImageVersion = newVersion
         NPMDversion = newVersion ;
         script.echo "neeeeewww Upgraded version from ${script.env.NPMImageVersion} to ${NPMDversion}"
+        script.sh "git push --tags"
 
     }
 
     @Override
-    def buildArtifact(Boolean test , String branchName) {
+    def buildArtifact(Boolean test) {
         script.sh "which npm "
         script.sh "which node "
         script.sh "npm --version "
@@ -30,6 +31,6 @@ class NPM implements  Serializable , LanguageType {
         script.sh "npm run build"
         script.sh "rm -rf hr.tar"
         script.sh "tar cvf hr.tar dist"
-        script.sh "git push --tags"
+
     }
 }

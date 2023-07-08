@@ -10,7 +10,7 @@ class Maven implements  Serializable , LanguageType {
 
 
     @Override
-    def buildArtifact(Boolean test , String branchName){
+    def buildArtifact(Boolean test){
 
         script.echo "Building Artifact Start ...."
         if (test){
