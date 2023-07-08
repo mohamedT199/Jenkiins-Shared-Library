@@ -10,7 +10,7 @@ class Maven implements  Serializable , LanguageType {
 
 
     @Override
-    def buildArtifact(Boolean test){
+    def buildArtifact(Boolean test ){
 
         script.echo "Building Artifact Start ...."
         if (test){
@@ -23,7 +23,7 @@ class Maven implements  Serializable , LanguageType {
     }
 
     @Override
-    def bumpVersion(pomDir){
+    def bumpVersion( String branch , pomDir  ){
         def matcher
         if (pomDir != "" && pomDir != null ){
             script.sh "mvn build-helper:parse-version versions:set \

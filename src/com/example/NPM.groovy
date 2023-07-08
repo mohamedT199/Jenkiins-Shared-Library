@@ -8,7 +8,7 @@ class NPM implements  Serializable , LanguageType {
     }
 
     @Override
-    def bumpVersion(pomDir) {
+    def bumpVersion(String branch , pomDir  ) {
         def versionType = 'minor'
         def currentVersion = script.sh(returnStdout: true, script: 'node -p "require(\'./package.json\').version"')
         script.sh "npm version ${versionType}"
@@ -17,6 +17,11 @@ class NPM implements  Serializable , LanguageType {
         script.env.NPMImageVersion = newVersion
         NPMDversion = newVersion ;
         script.echo "neeeeewww Upgraded version from ${script.env.NPMImageVersion} to ${NPMDversion}"
+        script.sh "git checkout ${branch}"
+        script.sh "git add package.json "
+        script.sh "git add commit -m 'upgrade version ' "
+        script.sh "git pull -r "
+        script.sh "git push origin ${branch}"
         script.sh "git push --tags"
 
     }
