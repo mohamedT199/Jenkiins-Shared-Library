@@ -32,7 +32,6 @@ class NPM implements  Serializable , LanguageType {
         script.sh "tar cvf hr.tar dist"
         script.sh "git checkout ${branchName}"
         script.sh "git pull -r "
-        script.sh "git push origin ${branchName}"
         script.sh "git push origin ${NPMDversion}"
     }
 }
