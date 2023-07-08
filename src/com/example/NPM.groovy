@@ -11,10 +11,8 @@ class NPM implements  Serializable , LanguageType {
     def bumpVersion(pomDir) {
         def versionType = 'minor'
         def currentVersion = script.sh(returnStdout: true, script: 'node -p "require(\'./package.json\').version"')
-        script.echo "Upgraded version from ${currentVersion}"
         script.sh "npm version ${versionType}"
         def newVersion = script.sh(returnStdout: true, script: 'node -p "require(\'./package.json\').version"')
-        script.echo "Upgraded version from ${newVersion}"
         script.echo "Upgraded version from ${currentVersion} to ${newVersion}"
         script.env.NPMImageVersion = newVersion
         NPMDversion = newVersion ;
@@ -32,8 +30,6 @@ class NPM implements  Serializable , LanguageType {
         script.sh "npm run build"
         script.sh "rm -rf hr.tar"
         script.sh "tar cvf hr.tar dist"
-        script.sh "git checkout ${branchName}"
-        script.sh "git pull -r "
         script.sh "git push --tags"
     }
 }
