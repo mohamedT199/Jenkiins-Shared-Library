@@ -3,6 +3,6 @@ package com.example
 interface LanguageType {
 
     def bumpVersion(pomDir);
-    def buildArtifact(Boolean test);
+    def buildArtifact(Boolean test,String branchName);
 
 }
