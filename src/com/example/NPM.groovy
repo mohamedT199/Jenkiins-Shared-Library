@@ -17,13 +17,11 @@ class NPM implements  Serializable , LanguageType {
         script.env.NPMImageVersion = newVersion
         NPMDversion = newVersion ;
         script.echo "neeeeewww Upgraded version from ${script.env.NPMImageVersion} to ${NPMDversion}"
-        script.sh "git checkout ${branch}"
-        script.sh "git pull "
-        script.sh "git add . "
+        script.sh "cat package.json "
+        script.sh "git add package.json "
         script.sh 'git commit -m "version" '
-        script.sh "git push origin ${branch}"
+        script.sh "git push origin HEAD:main"
         script.sh "git push --tags"
-
     }
 
     @Override
