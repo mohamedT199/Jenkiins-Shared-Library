@@ -11,9 +11,10 @@ class NPM implements  Serializable , LanguageType {
     def bumpVersion(pomDir) {
         def versionType = 'minor'
         def currentVersion = script.sh "node -p \"require('./package.json').version\""
+        def currentVersion2 = script { return sh(returnStdout: true, script: 'node -p "require(\'./package.json\').version"')}
         script.sh "npm version ${versionType}"
         def newVersion = script.sh "node -p \"require('./package.json').version\""
-        script.echo "Upgraded version from ${currentVersion} to ${newVersion}"
+        script.echo "Upgraded version from ${currentVersion2} to ${newVersion}"
 
     }
 
