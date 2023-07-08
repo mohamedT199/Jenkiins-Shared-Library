@@ -9,7 +9,7 @@ class NPM implements  Serializable , LanguageType {
 
     @Override
     def bumpVersion(String branch , pomDir  ) {
-        def versionType = 'minor'
+        def versionType = 'patch'
         def currentVersion = script.sh(returnStdout: true, script: 'node -p "require(\'./package.json\').version"')
         script.sh "npm version ${versionType}"
         def newVersion = script.sh(returnStdout: true, script: 'node -p "require(\'./package.json\').version"')
