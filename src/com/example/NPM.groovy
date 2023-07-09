@@ -4,8 +4,10 @@ import com.example.GIT
 class NPM implements  Serializable , LanguageType {
     def script
     def static NPMDversion ;
+    GIT git
     NPM(script) {
         this.script = script
+        git = new GIT(script)
     }
 
     @Override
@@ -19,7 +21,7 @@ class NPM implements  Serializable , LanguageType {
         NPMDversion = newVersion ;
         script.env.ImageName = "${newVersion}"
         script.echo "neeeeewww Upgraded version from ${script.env.NPMImageVersion} to ${NPMDversion}"
-        GIT(script).pushToGit()
+        git.pushToGit()
 
     }
 
