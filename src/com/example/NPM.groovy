@@ -11,7 +11,7 @@ class NPM implements  Serializable , LanguageType {
     def bumpVersion(String branch , pomDir  ) {
         def versionType = 'patch'
         def currentVersion = script.sh(returnStdout: true, script: 'node -p "require(\'./package.json\').version"')
-        script.sh "npm version ${versionType}"
+        script.sh "npm version ${versionType} -m \"Upgrade to %s\" "
         def newVersion = script.sh(returnStdout: true, script: 'node -p "require(\'./package.json\').version"')
         script.echo "Upgraded version from ${currentVersion} to ${newVersion}"
         script.env.NPMImageVersion = newVersion
@@ -22,8 +22,6 @@ class NPM implements  Serializable , LanguageType {
         script.echo "git url ${script.env.GIT_URL}"
         script.echo "git Branch ${script.env.GIT_BRANCH}"
         script.sh "git remote set-url origin  ${script.env.GIT_URL} "
-        script.sh "git add package.json "
-        script.sh 'git commit -m "version" '
         script.sh "git push origin HEAD:${script.env.GIT_BRANCH}"
     }
 
