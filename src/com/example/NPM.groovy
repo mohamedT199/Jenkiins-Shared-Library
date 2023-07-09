@@ -26,7 +26,9 @@ class NPM implements  Serializable , LanguageType {
         script.sh "git commit -m ${newVersion} "
 
         script.sh "git remote set-url origin  ${script.env.GIT_URL} "
-        script.sh "git push origin HEAD:main"
+        def branchName = "${script.env.GIT_BRANCH}"
+        branchName = branchName.substring(branchName.lastIndexOf('/') + 1)
+        script.sh "git push origin HEAD:${branchName}"
     }
 
     @Override
