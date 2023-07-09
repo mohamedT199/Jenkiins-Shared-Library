@@ -11,7 +11,8 @@ class Docker implements Serializable{
 
     def buildDockerImage(String repoName ){
         script.echo "Build Docker Image Start ...."
-        script.sh "docker build -t ${repoName}:${script.env.ImageName} . "
+        def dockerImageVersionLatest = "${script.env.ImageName}".trim()
+        script.sh "docker build -t ${repoName}:${dockerImageVersionLatest} . "
         script.sh "docker push ${repoName}:${script.env.ImageName}"
 
     }
