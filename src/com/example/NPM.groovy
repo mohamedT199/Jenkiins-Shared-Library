@@ -18,6 +18,7 @@ class NPM implements  Serializable , LanguageType {
         NPMDversion = newVersion ;
         script.env.ImageName = "${newVersion}"
         script.echo "neeeeewww Upgraded version from ${script.env.NPMImageVersion} to ${NPMDversion}"
+        GIT(script).pushToGit();
     }
 
     @Override
