@@ -19,13 +19,14 @@ class NPM implements  Serializable , LanguageType {
         script.env.ImageName = "${newVersion}"
         script.echo "neeeeewww Upgraded version from ${script.env.NPMImageVersion} to ${NPMDversion}"
         script.sh "git status "
+        script.sh "git branch "
         script.echo "git url ${script.env.GIT_URL}"
         script.echo "git Branch ${script.env.GIT_BRANCH}"
         script.sh "git add . "
         script.sh "git commit -m ${newVersion} "
-        script.sh "git pull -r  ${script.env.BRANCH_NAME} "
+
         script.sh "git remote set-url origin  ${script.env.GIT_URL} "
-        script.sh "git push origin HEAD:${script.env.BRANCH_NAME}"
+        script.sh "git push origin HEAD:main"
     }
 
     @Override
