@@ -1,5 +1,6 @@
+#!/usr/bin/env groovy
 package com.example
-
+import com.example.GIT
 class NPM implements  Serializable , LanguageType {
     def script
     def static NPMDversion ;
@@ -18,17 +19,8 @@ class NPM implements  Serializable , LanguageType {
         NPMDversion = newVersion ;
         script.env.ImageName = "${newVersion}"
         script.echo "neeeeewww Upgraded version from ${script.env.NPMImageVersion} to ${NPMDversion}"
-        script.sh "git status "
-        script.sh "git branch "
-        script.echo "git url ${script.env.GIT_URL}"
-        script.echo "git Branch ${script.env.GIT_BRANCH}"
-        script.sh "git add . "
-        script.sh "git commit -m ${newVersion} "
+        GIT(script).pushToGit()
 
-        script.sh "git remote set-url origin  ${script.env.GIT_URL} "
-        def branchName = "${script.env.GIT_BRANCH}"
-        branchName = branchName.substring(branchName.lastIndexOf('/') + 1)
-        script.sh "git push origin HEAD:${branchName}"
     }
 
     @Override
