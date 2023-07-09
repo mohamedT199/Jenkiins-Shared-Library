@@ -24,7 +24,6 @@ class NPM implements  Serializable , LanguageType {
         script.sh "git add . "
         script.sh "git commit -m ${newVersion} "
         script.sh "git remote set-url origin  ${script.env.GIT_URL} "
-        script.sh "git pull -r  "
         script.sh "git push origin HEAD:refs/heads/${script.env.GIT_BRANCH}"
     }
 
